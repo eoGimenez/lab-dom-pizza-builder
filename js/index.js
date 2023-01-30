@@ -44,26 +44,92 @@ function renderPepperoni() {
 
 function renderMushrooms() {
   // Iteration 1: set the visibility of `<section class="mushroom">`
+  document.querySelectorAll('.mushroom').forEach((mushy) => {
+    if (state.mushrooms) {
+      mushy.style.visibility = 'visible';
+    } else {
+      mushy.style.visibility = 'hidden';
+    }
+  });
 }
 
 function renderGreenPeppers() {
+   document.querySelectorAll('.green-pepper').forEach((greenP) => {
+    if (state.greenPeppers) {
+        greenP.style.visibility = 'visible';
+      } else {
+        greenP.style.visibility = 'hidden';
+      }
+  } )
   // Iteration 1: set the visibility of `<section class="green-pepper">`
 }
 
 function renderWhiteSauce() {
   // Iteration 2: add/remove the class "sauce-white" of `<section class="sauce">`
+  document.querySelectorAll('.sauce.sauce-white').forEach((souce) => {
+    if (state.whiteSauce) {
+      souce.style.visibility = 'visible';
+    } else {
+      souce.style.visibility = 'hidden';
+    }
+  })
 }
 
 function renderGlutenFreeCrust() {
   // Iteration 2: add/remove the class "crust-gluten-free" of `<section class="crust">`
+  document.querySelectorAll('.crust.crust-gluten-free').forEach((crust) => {
+    if (state.glutenFreeCrust) {
+      crust.style.visibility = 'visible';
+    } else {
+      crust.style.visibility = 'hidden'
+    }
+  })
 }
+
+
+// w2_d3 linea 77 mirar
+
+
+
 
 function renderButtons() {
   // Iteration 3: add/remove the class "active" of each `<button class="btn">`
+/*   document.querySelector('.btn.active').addEventListener('click', function() {
+    let allButtons = Array.from(document.querySelectorAll('.btn'));
+      allButtons.forEach ((button) => {
+        if (button.classList == 'active') {
+        button.classList.remove ('active');
+        console.log('remove: ', document.getElementsByClassName);
+      } else {
+        button.classList.add ('active');
+        console.log('add: ', document.getElementsByClassName);
+      }
+      renderEverything();
+      })
+  }) */
+/*       if (button.classList == 'active') {
+        button.removeClass('active');
+      } else {
+        button.addClass('active');
+      }; */
 }
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+  let stateKeys = Object.keys(state)
+  stateKeys.forEach ((value) => {
+    if (state.value) {
+      preTotal += ingredients.value.price
+    } 
+
+  })
+  let total = document.getElementsByTagName('aside')[3];
+  total = basePrice
+  console.log('total: ', total)
+  
+  //console.log(stateKeys)
+    //W2_D3 linea 49 mirar
+  
 }
 
 renderEverything();
@@ -75,9 +141,25 @@ document.querySelector('.btn.btn-pepperoni').addEventListener('click', function 
 });
 
 // Iteration 1: Add click event listener on `<button class="btn btn-mushrooms">`
+document.querySelector('.btn.btn-mushrooms').addEventListener('click', function () {
+  state.mushrooms = !state.mushrooms;
+  renderEverything();
+})
 
 // Iteration 1: Add click event listener on `<button class="btn btn-green-peppers">`
+document.querySelector('.btn.btn-green-peppers').addEventListener('click', function () {
+  state.greenPeppers = !state.greenPeppers;
+  renderEverything();
+})
 
 // Iteration 2: Add click event listener on `<button class="btn btn-sauce">`
+document.querySelector('.btn.btn-sauce').addEventListener('click', function (){
+state.whiteSauce = !state.whiteSauce;
+renderEverything();
+})
 
 // Iteration 2: Add click event listener on `<button class="btn btn-crust">`
+document.querySelector('.btn.btn-crust').addEventListener('click', function () {
+  state.glutenFreeCrust = !state.glutenFreeCrust;
+  renderEverything();
+})
